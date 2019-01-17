@@ -6,4 +6,9 @@ Sample book store app and a pabookyment module implementation
 
 ### Arts
 
-![Books](https://github.com/fatihsokmen/book-store-app/blob/master/arts/books.png?raw=true) ![Pay](https://github.com/fatihsokmen/book-store-app/blob/master/arts/pay.png?raw=true)
+<dl>
+  <dt>![Books](https://github.com/fatihsokmen/book-store-app/blob/master/arts/books.png?raw=true)</dt>
+  <dt>![Pay](https://github.com/fatihsokmen/book-store-app/blob/master/arts/pay.png?raw=true)</dt>
+</dl>
+
+
