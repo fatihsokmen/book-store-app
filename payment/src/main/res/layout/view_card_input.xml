@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:layout_marginTop="8dp"
+    android:background="@color/white"
+    tools:showIn="@layout/view_bottom_sheet">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:background="@color/transparent"
+        android:hint="@string/placeholder_card_number"
+        android:inputType="number"
+        android:maxLength="16"
+        android:paddingBottom="6dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_expire_date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:background="@color/transparent"
+        android:digits="0123456789/"
+        android:hint="@string/placeholder_expire_date"
+        android:maxLength="5"
+        android:paddingBottom="6dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_cvv"
+        app:layout_constraintStart_toEndOf="@+id/edit_card_number"
+        tools:ignore="TextFields" />
+
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edit_cvv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:background="@color/transparent"
+        android:hint="@string/placeholder_cvv"
+        android:inputType="number"
+        android:maxLength="3"
+        android:paddingBottom="6dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

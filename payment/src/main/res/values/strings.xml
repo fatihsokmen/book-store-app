@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">payment</string>
+
+    <string name="placeholder_card_number" translatable="false">0000000000000000</string>
+    <string name="placeholder_expire_date" translatable="false">MM/YY</string>
+    <string name="placeholder_cvv" translatable="false">000</string>
+
+    <string name="hint_card_holder">Card Holder</string>
+    <string name="hint_card_number">Card Number</string>
+    <string name="hint_expiry_date">Expiry</string>
+    <string name="hint_cvv">CVV</string>
+
+    <string name="submitting_payment_message">Submitting payment…</string>
+    <string name="error_pan_cant_be_empty">Card number is not valid</string>
+    <string name="error_expiry_cant_be_empty">Expiry is not valid</string>
+    <string name="error_cvv_cant_be_empty">Cvv is not valid</string>
+    <string name="error_cardholder_cant_be_empty">Card holder can not be empty</string>
+
+</resources>

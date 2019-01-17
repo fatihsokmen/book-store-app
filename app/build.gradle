@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.github.fatihsokmen.bookstore"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "MERCHANT_SERVER_URL", "\"http://MERCHANT_SERVER\""
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':payment')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation "com.android.support:preference-v7:${rootProject.ext.supportLibraryVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
+    implementation "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    implementation("com.squareup.retrofit2:adapter-rxjava2:2.4.0") {
+        exclude module: 'retrofit'
+    }
+
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
+    implementation 'com.google.dagger:dagger-android:2.15'
+    implementation 'com.google.dagger:dagger-android-support:2.15'
+    kapt 'com.google.dagger:dagger-android-processor:2.15'
+    kapt 'com.google.dagger:dagger-compiler:2.15'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.8.0"
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    kapt "com.jakewharton:butterknife-compiler:8.8.1"
+
+    implementation 'org.parceler:parceler-api:1.1.11'
+    kapt 'org.parceler:parceler:1.1.11'
+
+}

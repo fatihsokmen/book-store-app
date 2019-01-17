@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.github.fatihsokmen.payment.sdk">
+
+    <application>
+        <activity
+                android:name=".cardpayment.CardPaymentActivity"
+                android:screenOrientation="behind"
+                android:theme="@style/SdkTheme.Translucent"
+                android:windowSoftInputMode="adjustResize|stateUnchanged"/>
+    </application>
+</manifest>

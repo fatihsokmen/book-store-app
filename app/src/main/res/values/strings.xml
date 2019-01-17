@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">book-store-app</string>
+
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_product_details">Books Details</string>
+
+    <string name="navigation_label_books">Books</string>
+    <string name="navigation_label_basket">Basket</string>
+    <string name="navigation_label_orders">Orders</string>
+
+    <string name="fragment_title_books">Book Store</string>
+    <string name="fragment_title_basket">Basket</string>
+    <string name="fragment_title_orders">Orders</string>
+
+    <string name="label_add_to_basket">Add To Basket</string>
+    <string name="label_card_payment">Pay with Card</string>
+    <string name="label_delete">Delete</string>
+
+    <string name="empty_basket_message">Your basket is empty</string>
+
+    <string name="product_in_basket">This book is your basket</string>
+
+    <string name="order_successful">Order successful</string>
+    <string name="continue_shopping">Continue Shopping</string>
+
+    <string name="subtotal">Total:</string>
+
+</resources>

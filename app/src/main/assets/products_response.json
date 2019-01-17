@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": "B00001",
+      "info": {
+        "name": "Design patterns : elements of reusable object-oriented software",
+        "productDescription": "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
+        "image": "1.jpg"
+      },
+      "price": {
+        "total": 50,
+        "tax": 10,
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "B00002",
+      "info": {
+        "name": "Rethinking Productivity in Software Engineering",
+        "productDescription": "Get the most out of this foundational reference and improve the productivity of your software teams. This open access book collects the wisdom of the 2017 Dagstuhl seminar on productivity in software engineering, a meeting of community leaders, who came together with the goal of rethinking traditional definitions and measures of productivity. The results of their work, Rethinking Productivity in Software Engineering, includes chapters covering definitions and core concepts related to productivity, guidelines for measuring productivity in specific contexts, best practices and pitfalls, and theories and open questions on productivity. You'll benefit from the many short chapters, each offering a focused discussion on one aspect of productivity in software engineering. ",
+        "image": "2.jpg"
+      },
+      "price": {
+        "total": 46,
+        "tax": 9.2,
+        "currency": "GBP"
+      }
+    },
+    {
+      "id": "B00003",
+      "info": {
+        "name": "Clean Code: A Handbook of Agile Software Craftsmanship (Robert C. Martin)",
+        "productDescription": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way. Noted software expert Robert C. Martin presents a revolutionary paradigm with Clean Code: A Handbook of Agile Software Craftsmanship . Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code “on the fly” into a book that will instill within you the values of a software craftsman and make you a better programmer—but only if you work at it",
+        "image": "3.jpg"
+      },
+      "price": {
+        "total": 28,
+        "tax": 7,
+        "currency": "GBP"
+      }
+    }
+  ]
+}
