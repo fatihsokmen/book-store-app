@@ -10,8 +10,7 @@ internal class CardPaymentApiInteractor constructor(
     }
 
     /**
-     * Different from demo app, we are not using RxJava but Kotlin Coroutines
-     * Result is sent back using lambda functions
+     * Different from demo app, we are not using RxJava but Kotlin Coroutine suspended function
      */
     suspend fun authorizePayment(
         paymentReference: String,
