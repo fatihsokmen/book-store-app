@@ -30,6 +30,8 @@ interface CardPaymentContract {
         fun onCvvFocusGained()
 
         fun onPayClicked()
+
+        fun onDestroy()
     }
 
     interface Interactions {

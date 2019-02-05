@@ -3,9 +3,8 @@ package com.github.fatihsokmen.payment.sdk.cardpayment
 import android.support.annotation.VisibleForTesting
 import com.github.fatihsokmen.payment.sdk.R
 import com.github.fatihsokmen.payment.sdk.cardpayment.resources.StringResources
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 internal class CardPaymentPresenter(
     paymentUrl: String,
@@ -15,7 +14,12 @@ internal class CardPaymentPresenter(
     private val paymentApiInteractor: CardPaymentApiInteractor,
     private val stringResources: StringResources,
     private val dispatchers: CoroutinesDispatcherProvider
-) : CardPaymentContract.Presenter {
+) : CardPaymentContract.Presenter, CoroutineScope {
+
+    private val job = SupervisorJob()
+
+    override val coroutineContext: CoroutineContext
+        get() = dispatchers.main + job
 
     private val expiryMatcher: Regex by lazy {
         Regex("^\\d{2}\\/\\d{2}\$")
@@ -44,9 +48,13 @@ internal class CardPaymentPresenter(
         } ?: doAuthorizePayment()
     }
 
+    override fun onDestroy() {
+        coroutineContext.cancelChildren()
+    }
+
     private fun doAuthorizePayment() {
         view.showProgress(true, stringResources.getString(PROGRESS_MESSAGE_RESOURCE))
-        GlobalScope.launch(dispatchers.main) {
+        launch(dispatchers.main) {
             val response = withContext(dispatchers.io) {
                 paymentApiInteractor.authorizePayment(
                     paymentReference,

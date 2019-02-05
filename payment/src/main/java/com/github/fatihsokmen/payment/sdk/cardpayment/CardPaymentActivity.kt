@@ -66,6 +66,11 @@ class CardPaymentActivity : Activity(), CardPaymentContract.Interactions {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
+
     companion object {
         private const val PAYMENT_URL_KEY = "payment-api-url"
         private const val ORDER_REFERENCE_KEY = "merchant-order-reference"
