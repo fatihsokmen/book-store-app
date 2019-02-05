@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.products.data.ProductDomain
-import org.parceler.Parcels
 
 import kotlinx.android.synthetic.main.activity_product_details.*
 
@@ -40,7 +39,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         fun getIntent(context: Context, product: ProductDomain) =
                 Intent(context, ProductDetailActivity::class.java).apply {
-                    putExtra(KEY_PRODUCT, Parcels.wrap(product))
+                    putExtra(KEY_PRODUCT, product)
                 }
     }
 }

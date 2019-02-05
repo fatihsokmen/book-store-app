@@ -7,9 +7,9 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ProductDetailsFragmentPresenter @Inject constructor(
-    private val view: ProductDetailsFragmentContract.View,
-    private val repository: ProductRepository,
-    private val scheduler: Scheduler
+        private val view: ProductDetailsFragmentContract.View,
+        private val repository: ProductRepository,
+        private val scheduler: Scheduler
 ) : ProductDetailsFragmentContract.Presenter {
 
     private val subscriptions = CompositeDisposable()
@@ -20,20 +20,22 @@ class ProductDetailsFragmentPresenter @Inject constructor(
         this.product = product
 
         subscriptions.add(repository.hasProduct(product.id)
-            .subscribeOn(scheduler.io())
-            .observeOn(scheduler.main())
-            .subscribe { productInBasket ->
-                view.bindData(product, productInBasket)
-            })
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.main())
+                .subscribe({ productInBasket ->
+                    view.bindData(product, productInBasket)
+                }, {
+                    view.dismiss()
+                }))
     }
 
     override fun addToBasket() {
         subscriptions.add(repository.insertProduct(product)
-            .subscribeOn(scheduler.io())
-            .observeOn(scheduler.main())
-            .subscribe {
-                view.dismiss()
-            })
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.main())
+                .subscribe {
+                    view.dismiss()
+                })
     }
 
     override fun cleanup() {

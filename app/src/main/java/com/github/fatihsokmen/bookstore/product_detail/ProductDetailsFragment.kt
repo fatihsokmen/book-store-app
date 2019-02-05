@@ -12,7 +12,6 @@ import com.github.fatihsokmen.bookstore.products.data.ProductDomain
 import javax.inject.Inject
 
 import kotlinx.android.synthetic.main.fragment_product_details.*
-import org.parceler.Parcels
 
 
 class ProductDetailsFragment : Fragment(), ProductDetailsFragmentContract.View {
@@ -30,13 +29,12 @@ class ProductDetailsFragment : Fragment(), ProductDetailsFragmentContract.View {
 
         createProductDetailsComponent(this).inject(this)
 
-        val product: ProductDomain = Parcels.unwrap(
-                activity?.intent?.getParcelableExtra(ProductDetailActivity.KEY_PRODUCT)
-        )
+        val product: ProductDomain? = activity?.intent?.getParcelableExtra(ProductDetailActivity.KEY_PRODUCT)
+
         addToBasketButton.setOnClickListener {
             onAddToBasketClicked()
         }
-        presenter.init(product)
+        presenter.init(product!!)
 
     }
 

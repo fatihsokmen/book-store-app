@@ -12,6 +12,7 @@ import com.github.fatihsokmen.bookstore.dependency.scheduler.Scheduler
 
 import dagger.BindsInstance
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 
 interface BaseComponent {
 
@@ -24,6 +25,8 @@ interface BaseComponent {
     fun productDao(): ProductDao
 
     fun okHttpClient(): OkHttpClient
+
+    fun retrofit(): Retrofit
 
     fun formatter(): Formatter
 
