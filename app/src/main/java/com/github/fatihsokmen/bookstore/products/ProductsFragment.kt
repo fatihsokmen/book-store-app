@@ -4,23 +4,18 @@ package com.github.fatihsokmen.bookstore.products
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.github.fatihsokmen.bookstore.App
 import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.products.data.ProductDomain
 import javax.inject.Inject
 
-class ProductsFragment : Fragment(), ProductsFragmentContract.View {
+import kotlinx.android.synthetic.main.fragment_products.*
 
-    @BindView(R.id.progress)
-    internal lateinit var progressView: ProgressBar
+class ProductsFragment : Fragment(), ProductsFragmentContract.View {
 
     @Inject
     internal lateinit var adapter: ProductsAdapter
@@ -30,17 +25,16 @@ class ProductsFragment : Fragment(), ProductsFragmentContract.View {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_products, container, false)
-        ButterKnife.bind(this, view)
+        return inflater.inflate(R.layout.fragment_products, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         createProductsComponent(this).inject(this)
 
-        val productsView: RecyclerView = view.findViewById(R.id.products)
-        productsView.adapter = adapter
-
+        products.adapter = adapter
         presenter.init()
-
-        return view
     }
 
     override fun bindData(products: List<ProductDomain>) {
@@ -52,7 +46,10 @@ class ProductsFragment : Fragment(), ProductsFragmentContract.View {
     }
 
     override fun showError(message: String?) {
-        Snackbar.make(view!!, message ?: "No error message supplied", Toast.LENGTH_SHORT).show()
+        view?.let {
+            Snackbar.make(it, message
+                    ?: getString(R.string.unknown_error), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

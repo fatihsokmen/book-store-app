@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/empty_basket"
+        android:id="@+id/emptyBasketMessageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -18,7 +18,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/basket_products"
+            android:id="@+id/basketProductsView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -26,7 +26,7 @@
             tools:listItem="@layout/view_basket_product_item" />
 
         <LinearLayout
-            android:id="@+id/amount_layout"
+            android:id="@+id/amountLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -45,19 +45,21 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    android:id="@+id/subTotalLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUBTOTAL"
+                    android:text="@string/label_subtotal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/subtotal_amount"
+                    android:id="@+id/subTotalAmountView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#444"
                     android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="@id/subTotalLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="$1000" />
             </android.support.constraint.ConstraintLayout>
@@ -67,19 +69,21 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/taxAmountLabelView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TAX"
+                    android:text="@string/label_tax"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tax_amount"
+                    android:id="@+id/taxAmountView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#444"
                     android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="@id/taxAmountLabelView"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="$1000" />
             </android.support.constraint.ConstraintLayout>
@@ -87,7 +91,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/pay_button_layout"
+            android:id="@+id/payButtonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -96,7 +100,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/pay"
+                android:id="@+id/cardPaymentButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/label_card_payment"
@@ -112,14 +116,14 @@
     </android.support.v7.widget.LinearLayoutCompat>
 
     <ProgressBar
-        android:id="@+id/progress"
+        android:id="@+id/progressView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/order_successful"
+        android:id="@+id/orderSuccessful"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -144,7 +148,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/continue_shopping"
+            android:id="@+id/continueShoppingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

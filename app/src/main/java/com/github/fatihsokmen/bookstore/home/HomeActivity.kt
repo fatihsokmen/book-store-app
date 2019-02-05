@@ -6,17 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.github.fatihsokmen.bookstore.App
 import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.basket.BasketFragment
@@ -25,16 +21,13 @@ import com.github.fatihsokmen.bookstore.orders.OrdersFragment
 import com.github.fatihsokmen.payment.sdk.cardpayment.CardPaymentData
 import javax.inject.Inject
 
+import kotlinx.android.synthetic.main.activity_home.*
+
 class HomeActivity : AppCompatActivity(),
     HomeActivityContract.View, OnNavigationItemSelectedListener {
 
     @Inject
     lateinit var presenter: HomeActivityContract.Presenter
-
-    @BindView(R.id.toolbar)
-    lateinit var toolbar: Toolbar
-    @BindView(R.id.navigation)
-    lateinit var navigation: BottomNavigationView
 
     private lateinit var badge: ViewGroup
     private lateinit var badgeContent: TextView
@@ -44,8 +37,6 @@ class HomeActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        ButterKnife.bind(this)
 
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(this)

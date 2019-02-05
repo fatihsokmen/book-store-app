@@ -5,23 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.VisibleForTesting
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.products.data.ProductDomain
 import org.parceler.Parcels
 
-class ProductDetailActivity : AppCompatActivity() {
+import kotlinx.android.synthetic.main.activity_product_details.*
 
-    @BindView(R.id.toolbar)
-    lateinit var toolbar: Toolbar
+class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_details)
-        ButterKnife.bind(this)
+        setContentView(R.layout.activity_product_details)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -44,8 +39,8 @@ class ProductDetailActivity : AppCompatActivity() {
         const val KEY_PRODUCT = "product"
 
         fun getIntent(context: Context, product: ProductDomain) =
-            Intent(context, ProductDetailActivity::class.java).apply {
-                putExtra(KEY_PRODUCT, Parcels.wrap(product))
-            }
+                Intent(context, ProductDetailActivity::class.java).apply {
+                    putExtra(KEY_PRODUCT, Parcels.wrap(product))
+                }
     }
 }

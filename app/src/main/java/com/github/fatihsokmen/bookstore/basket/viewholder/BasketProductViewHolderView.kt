@@ -1,45 +1,31 @@
 package com.github.fatihsokmen.bookstore.basket.viewholder
 
-import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.bumptech.glide.Glide
-import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.basket.BasketFragmentContract
 import com.github.fatihsokmen.bookstore.basket.data.BasketProductDomain
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.view_basket_product_item.*
 import javax.inject.Inject
 
 class BasketProductViewHolderView @Inject constructor(
-    itemView: View,
+    override val containerView: View,
     private val interactions: BasketFragmentContract.Interactions
-) : RecyclerView.ViewHolder(itemView) {
+) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    @BindView(R.id.basket_product_image)
-    lateinit var basketProductImage: ImageView
-    @BindView(R.id.basket_product_name)
-    lateinit var basketProductName: TextView
+    init {
+        deleteButton.setOnClickListener {
+            interactions.onDeleteClicked(basketProduct.id)
+        }
+    }
 
     private lateinit var basketProduct: BasketProductDomain
 
-    init {
-        ButterKnife.bind(this, itemView)
-    }
-
-    @SuppressLint("SetTextI18n")
     fun bind(basketProduct: BasketProductDomain) {
         this.basketProduct = basketProduct
         basketProductName.text = basketProduct.name
         Glide.with(itemView.context).load(basketProduct.imageUrl).into(basketProductImage)
-    }
-
-    @OnClick(R.id.delete_button)
-    fun onDeleteClicked() {
-        interactions.onDeleteClicked(basketProduct.id)
     }
 
 }

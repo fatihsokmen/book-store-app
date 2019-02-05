@@ -5,17 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
-import butterknife.ButterKnife
 import javax.inject.Inject
 import android.support.v7.widget.DividerItemDecoration
-import android.widget.ProgressBar
-import android.widget.TextView
-import butterknife.OnClick
 import com.github.fatihsokmen.bookstore.App
 import com.github.fatihsokmen.bookstore.R
 import com.github.fatihsokmen.bookstore.basket.data.AmountDetails
@@ -24,35 +18,10 @@ import com.github.fatihsokmen.bookstore.basket.viewholder.BasketProductViewHolde
 import com.github.fatihsokmen.bookstore.home.HomeActivity
 import com.github.fatihsokmen.payment.sdk.cardpayment.CardPaymentData
 
+import kotlinx.android.synthetic.main.fragment_basket.*
+
 
 class BasketFragment : Fragment(), BasketFragmentContract.View {
-
-    @BindView(R.id.basket_products)
-    lateinit var basketProductsView: RecyclerView
-
-    @BindView(R.id.pay_button_layout)
-    lateinit var payButtonLayout: View
-
-    @BindView(R.id.pay)
-    lateinit var cardPaymentButton: View
-
-    @BindView(R.id.amount_layout)
-    lateinit var amountLayout: View
-
-    @BindView(R.id.empty_basket)
-    lateinit var emptyBasketMessageView: TextView
-
-    @BindView(R.id.subtotal_amount)
-    lateinit var subTotalAmountView: TextView
-
-    @BindView(R.id.tax_amount)
-    lateinit var taxAmountView: TextView
-
-    @BindView(R.id.progress)
-    lateinit var progressView: ProgressBar
-
-    @BindView(R.id.order_successful)
-    lateinit var orderSuccessful: View
 
     @Inject
     internal lateinit var viewHolderFactoryBuilder: BasketProductViewHolderFactory.Builder
@@ -63,21 +32,28 @@ class BasketFragment : Fragment(), BasketFragmentContract.View {
     @Inject
     internal lateinit var interactions: BasketFragmentContract.Interactions
 
-
     private lateinit var adapter: BasketProductsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_basket, container, false)
-        ButterKnife.bind(this, view)
+        return inflater.inflate(R.layout.fragment_basket, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         createBasketComponent(this, activity!!).inject(this)
 
         adapter = BasketProductsAdapter(viewHolderFactoryBuilder, interactions)
         basketProductsView.adapter = adapter
         basketProductsView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
+        cardPaymentButton.setOnClickListener {
+            onCardPaymentClicked()
+        }
+        continueShoppingButton.setOnClickListener {
+            onContinueClicked()
+        }
         presenter.init()
 
-        return view
     }
 
     override fun bindData(basketProducts: List<BasketProductDomain>) {
@@ -97,7 +73,7 @@ class BasketFragment : Fragment(), BasketFragmentContract.View {
     }
 
     override fun showError(message: String?) {
-        Snackbar.make(view!!, message ?: "No error message supplied", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(view!!, message ?: getString(R.string.unknown_error), Snackbar.LENGTH_SHORT).show()
     }
 
     override fun setSubTotalAmount(amount: String) {
@@ -106,21 +82,6 @@ class BasketFragment : Fragment(), BasketFragmentContract.View {
 
     override fun setTaxAmount(amount: String) {
         taxAmountView.text = amount
-    }
-
-    @OnClick(R.id.pay)
-    fun onCardPaymentClicked() {
-        presenter.onPayWithCard()
-    }
-
-    @OnClick(R.id.continue_shopping)
-    fun onContinueClicked() {
-        context?.let {
-            val intent = Intent(it, HomeActivity::class.java)
-            intent.putExtra("tab", R.id.navigate_books)
-            intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.startActivity(intent)
-        }
     }
 
     override fun showCardPaymentButton(show: Boolean) {
@@ -150,6 +111,19 @@ class BasketFragment : Fragment(), BasketFragmentContract.View {
 
     fun onCardPaymentCancelled() {
         presenter.onCardPaymentCancelled()
+    }
+
+    private fun onCardPaymentClicked() {
+        presenter.onPayWithCard()
+    }
+
+    private fun onContinueClicked() {
+        context?.let {
+            val intent = Intent(it, HomeActivity::class.java)
+            intent.putExtra("tab", R.id.navigate_books)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            it.startActivity(intent)
+        }
     }
 
     companion object {

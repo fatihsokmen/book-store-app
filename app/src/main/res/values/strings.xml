@@ -15,6 +15,8 @@
     <string name="label_add_to_basket">Add To Basket</string>
     <string name="label_card_payment">Pay with Card</string>
     <string name="label_delete">Delete</string>
+    <string name="label_subtotal">SUBTOTAL</string>
+    <string name="label_tax">TAX</string>
 
     <string name="empty_basket_message">Your basket is empty</string>
 
@@ -24,5 +26,7 @@
     <string name="continue_shopping">Continue Shopping</string>
 
     <string name="subtotal">Total:</string>
+
+    <string name="unknown_error">Unknown error</string>
 
 </resources>
